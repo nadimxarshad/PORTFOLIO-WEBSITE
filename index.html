@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #333;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 5px solid #667eea;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .skill-card h3 {
+            font-size: 1.1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Resume Section */
+        .resume-container {
+            text-align: center;
+        }
+
+        .resume-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .resume-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #764ba2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image img {
+                width: 200px;
+                height: 200px;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Nadim Arshad</h1>
+        <p>Full Stack Developer | Creative Problem Solver</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="C:\Users\arsha\OneDrive\Pictures\Screenshots\Screenshot 2026-01-31 212247.png" alt="Profile Picture">
+                </div>
+                <div class="about-text">
+                    <h3>Hi, I'm [Nadim Arshad]</h3>
+                    <p>
+                        Welcome to my portfolio! I'm a passionate developer with expertise in web development 
+                        and a strong foundation in computer science. I love creating elegant solutions to complex 
+                        problems and am always eager to learn new technologies.
+                    </p>
+                    <p>
+                        With [6 months] of experience in the tech industry, I've had the opportunity to work on 
+                        various projects that have helped me develop strong technical and interpersonal skills. 
+                        My goal is to leverage my skills to build impactful applications that make a difference.
+                    </p>
+                    <p>
+                        When I'm not coding, you can find me [your hobbies/interests], exploring new tech trends, 
+                        or contributing to open-source projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>HTML & CSS</h3>
+                    <p>Modern, responsive web design</p>
+                </div>
+                <div class="skill-card">
+                    <h3>JavaScript</h3>
+                    <p>Frontend and backend development</p>
+                </div>
+                <div class="skill-card">
+                    <h3>React</h3>
+                    <p>Building dynamic user interfaces</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Node.js</h3>
+                    <p>Server-side development</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Database Design</h3>
+                    <p>SQL and NoSQL databases</p>
+                </div>
+                <div class="skill-card">
+                    <h3>UI/UX Design</h3>
+                    <p>Creating user-friendly interfaces</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3>Project 1: Calculator</h3>
+                        <p>
+                            A full-stack Calculator application built with HTML and CSS. 
+                            
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🎨</div>
+                    <div class="project-content">
+                        <h3>Project 2: Portfolio Website</h3>
+                        <p>
+                            A responsive Portfolio website that is built with HTML CSS and JavaScript .
+                        </p>
+                    </div>
+                
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume">
+            <h2>Resume</h2>
+            <div class="resume-container">
+                <p style="margin-bottom: 1.5rem;">
+                    Download my resume to learn more about my qualifications and experience.
+                </p>
+                <a href="#" class="resume-btn">📥 Download Resume (PDF)</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p><a href="arshadnadm18@gmail.com">arshadnadm18@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>📱 Phone</h3>
+                    <p><a href="tel: 7766860887">7766860887</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>🔗 LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/nadim-arshad-0823b5384/?skipRedirect=true" target="_blank">https://www.linkedin.com/in/nadim-arshad-0823b5384</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>
+            <a href="#about">Privacy Policy</a> | 
+            <a href="#about">Terms of Service</a>
+        </p>
+    </footer>
+</body>
+</html>
